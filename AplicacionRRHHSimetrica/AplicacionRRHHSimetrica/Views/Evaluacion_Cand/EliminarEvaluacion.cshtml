@@ -1,0 +1,54 @@
+﻿@model AplicacionRRHHSimetrica.Models.Evaluacion_Cand
+
+@{
+    ViewBag.Title = "EliminarEvaluacion";
+}
+
+<h3>Estas seguro de que quieres eliminar esta evaluacion de @Html.DisplayFor(model => model.C_CANDIDATO.NOMBRE)?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.C_CANDIDATO.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_CANDIDATO.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C_ESTATUS.ESTATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_ESTATUS.ESTATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONAL_RRHH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONAL_RRHH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMENTARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMENTARIO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <center>
+                    <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Ver listado de evaluacion candidatos", "Index")
+        </div>
+        </center>
+    }
+</div>

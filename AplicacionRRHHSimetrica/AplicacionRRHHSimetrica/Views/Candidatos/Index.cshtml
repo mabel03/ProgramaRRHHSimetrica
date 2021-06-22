@@ -1,0 +1,82 @@
+﻿@model IEnumerable<AplicacionRRHHSimetrica.Models.Candidatos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de candidato</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Candidato", "CrearCandidato", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.C_AREA.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APELLIDO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CEDULA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DIRECCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LENGUAJE_PRO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EXPERIENCIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIEMPO_EXPE)
+        </th>
+        <th>ACCION</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_AREA.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APELLIDO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CEDULA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DIRECCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LENGUAJE_PRO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EXPERIENCIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIEMPO_EXPE)
+        </td>
+        <td>
+            @if (!item.Decision)
+            {
+                @Html.ActionLink("Eliminar", "EliminarCandidato", new { id = item.CODIGO }, new { @class = "btn btn-danger btn-xs " })
+            }
+        </td>
+    </tr>
+}
+
+</table>
