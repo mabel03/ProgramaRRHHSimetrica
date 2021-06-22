@@ -1,0 +1,96 @@
+﻿@model AplicacionRRHHSimetrica.Models.Candidatos
+
+@{
+    ViewBag.Title = "EliminarCandidato";
+}
+
+<h2>Eliminar Candidato</h2>
+
+<h3>Estas seguro que desea eleiminar este candidato?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.C_AREA.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_AREA.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APELLIDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CEDULA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CEDULA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIRECCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIRECCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LENGUAJE_PRO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LENGUAJE_PRO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXPERIENCIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXPERIENCIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIEMPO_EXPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIEMPO_EXPE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <center>
+            <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> ||
+            @Html.ActionLink("Ver listado de candidatos", "Index")
+        </div>
+        </center>
+    }
+</div>
