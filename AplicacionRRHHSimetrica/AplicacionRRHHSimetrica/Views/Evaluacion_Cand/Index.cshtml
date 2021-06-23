@@ -11,47 +11,56 @@
 </p>
 <h4>Buscar candidatos<h4>
 
-<br />
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.C_CANDIDATO.NOMBRE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.C_ESTATUS.ESTATUS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PERSONAL_RRHH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.COMENTARIO)
-        </th>
-        <th>@Html.DisplayNameFor(model => model.FECHA_TRAN)</th>
-        <th>ACCION</th>
-    </tr>
+    <br />
+    candidato
 
-    @foreach (var item in Model)
+    @Html.DropDownList("CANDIDATO", null, htmlAttributes: new { @class = "form-control" })
+
+    @using (Html.BeginForm("Index", "Evaluacion_Cand",FormMethod.Get))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.C_CANDIDATO.NOMBRE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.C_ESTATUS.ESTATUS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PERSONAL_RRHH)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.COMENTARIO)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FECHA_TRAN)
-            </td>
-            <td>
-                @Html.ActionLink("Eliminar", "EliminarEvaluacion", new { id = item.CODIGO }, new { @class = "btn btn-danger btn-xs " })
-            </td>
-        </tr>
+        @Html.DropDownList("CANDIDATO",null, new { onchange = @"form.submit();" })
     }
 
-</table>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.C_CANDIDATO.NOMBRE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.C_ESTATUS.ESTATUS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PERSONAL_RRHH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.COMENTARIO)
+            </th>
+            <th>@Html.DisplayNameFor(model => model.FECHA_TRAN)</th>
+            <th>ACCION</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C_CANDIDATO.NOMBRE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C_ESTATUS.ESTATUS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PERSONAL_RRHH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COMENTARIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHA_TRAN)
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "EliminarEvaluacion", new { id = item.CODIGO }, new { @class = "btn btn-danger btn-xs " })
+                </td>
+            </tr>
+        }
+
+    </table>

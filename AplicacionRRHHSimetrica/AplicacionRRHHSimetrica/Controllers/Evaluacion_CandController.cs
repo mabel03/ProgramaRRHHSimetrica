@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -18,10 +19,18 @@ namespace AplicacionRRHHSimetrica.Controllers
 
         public ActionResult Index()
         {
+            var candidato = Request["CANDIDATO"];
             var evaluacion_Cand_ = db.Evaluacion_Cand_.Include(e => e.C_CANDIDATO).Include(e => e.C_ESTATUS);
+          
+            if(candidato != null)
+            {
+                int CodigoCandidato = int.Parse(candidato);
+                evaluacion_Cand_ = evaluacion_Cand_.Where(h => h.CANDIDATO == CodigoCandidato);
+            }
+            ViewBag.CANDIDATO = new SelectList(evaluacionCanServ.ListadoCandidato(), "CODIGO", "NOMBRE");
             return View(evaluacion_Cand_);
         }
-        
+
 
         public ActionResult CrearEvaluacion()
         {
@@ -92,6 +101,31 @@ namespace AplicacionRRHHSimetrica.Controllers
         {
             evaluacionCanServ.EliminarEvaluacion(id);
             return RedirectToAction("Index");
+        }
+        // BUSCAR CANDIDATO
+        public ActionResult Buscar(string palabra)
+        {
+            IEnumerable<Evaluacion_Cand> libros;
+            var candidatos_ = db.Evaluacion_Cand_.Include(c => c.C_CANDIDATO).ToList();
+            var Evaluacion = db.Evaluacion_Cand_;
+            for (int i = 0; i < candidatos_.Count(); i++)
+            {
+                int Codigo = candidatos_[i].CODIGO;
+                var decision = Evaluacion.Where(x => x.CANDIDATO == Codigo).FirstOrDefault();
+            }
+            using (var bd = new DbSimetricaConxtext())
+            {
+                libros = bd.Evaluacion_Cand_;
+
+                if (!String.IsNullOrEmpty(palabra))
+                {
+                    //libros = candidatos_.Where(l => l.CANDIDATO.ToUpper().Contains(palabra.ToUpper()));
+                }
+
+                libros = libros.ToList();
+            }
+
+            return View(libros);
         }
 
         protected override void Dispose(bool disposing)
