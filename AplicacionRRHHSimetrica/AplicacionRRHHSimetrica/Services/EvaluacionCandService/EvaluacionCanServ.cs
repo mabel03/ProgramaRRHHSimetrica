@@ -25,11 +25,15 @@ namespace AplicacionRRHHSimetrica.Services.EvaluacionCandService
                 throw exc;
             }
         }
+        public List<Evaluacion_Cand> BuscarCandidato()
+        {
+            return db.Evaluacion_Cand_.ToList();
+        }
 
-        //public Evaluacion_Cand BuscarCandidato()
-        //{
-        //    List<>
-        //}
+        public List<Evaluacion_Cand> Listado()
+        {
+            return db.Evaluacion_Cand_.ToList();
+        }
 
         public List<Candidatos> ListadoCandidato()
         {
@@ -66,6 +70,8 @@ namespace AplicacionRRHHSimetrica.Services.EvaluacionCandService
             try
             {
                 var evaluacion = db.Evaluacion_Cand_.FirstOrDefault(p => p.CODIGO == evaluacion_.CODIGO);
+
+
                 if (evaluacion != null)
                 {
                     db.Entry(evaluacion).State = EntityState.Modified;

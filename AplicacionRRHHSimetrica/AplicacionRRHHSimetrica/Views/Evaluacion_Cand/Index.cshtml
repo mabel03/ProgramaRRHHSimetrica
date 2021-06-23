@@ -10,17 +10,11 @@
     @Html.ActionLink("Crear Evaluacion", "CrearEvaluacion", null, new { @class = "btn btn-success" })
 </p>
 <h4>Buscar candidatos<h4>
-
-    <br />
-    candidato
-
-    @Html.DropDownList("CANDIDATO", null, htmlAttributes: new { @class = "form-control" })
-
     @using (Html.BeginForm("Index", "Evaluacion_Cand",FormMethod.Get))
     {
-        @Html.DropDownList("CANDIDATO",null, new { onchange = @"form.submit();" })
+        @Html.DropDownList("CANDIDATO",null, new { onchange = @"form.submit();", @class = "form-control" })
     }
-
+    <br />
     <table class="table">
         <tr>
             <th>

@@ -42,6 +42,7 @@ namespace AplicacionRRHHSimetrica.Models
         [Required(ErrorMessage = "Es obligatorio ingresar el lenguaje")]
         [Column("LENGUAJE_PRO")]
         [MaxLength(20)]
+        [Display(Name = "LENGUAJE PROGRAMACION")]
         public string LENGUAJE_PRO { get; set; }
 
         [Column("EXPERIENCIA")]
@@ -49,6 +50,7 @@ namespace AplicacionRRHHSimetrica.Models
         public string EXPERIENCIA { get; set; }
 
         [Column("TIEMPO_EXPE")]
+        [Display(Name = "TIEMPO EXPERIENCIA")]
         public int TIEMPO_EXPE { get; set; }
 
         [Required(ErrorMessage = "Es obligatorio ingresar el area")]

@@ -16,7 +16,7 @@ namespace AplicacionRRHHSimetrica
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Candidatos", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

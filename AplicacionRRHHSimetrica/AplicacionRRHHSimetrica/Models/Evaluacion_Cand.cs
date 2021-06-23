@@ -22,6 +22,7 @@ namespace AplicacionRRHHSimetrica.Models
         [Required(ErrorMessage = "Es obligatorio ingresar el personal")]
         [Column("PERSONAL_RRHH")]
         [MaxLength(21)]
+        [Display(Name ="PERSONAL RRHH")]
         public string PERSONAL_RRHH { get; set; }
 
         [Column("COMENTARIO")]
