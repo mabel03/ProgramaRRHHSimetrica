@@ -15,9 +15,9 @@ namespace AplicacionRRHHSimetrica.Controllers
     {
         private CandidatoServ candidatoServ = new CandidatoServ();
 
+
         public ActionResult Index()
         { 
-
             var candidatos = candidatoServ.BotonEliminarCandidato();
             return View(candidatos);
         }

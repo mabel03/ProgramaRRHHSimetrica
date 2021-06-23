@@ -14,20 +14,24 @@ namespace AplicacionRRHHSimetrica.Controllers
 {
     public class Evaluacion_CandController : Controller
     {
-        private DbSimetricaConxtext db = new DbSimetricaConxtext();
         private EvaluacionCanServ evaluacionCanServ = new EvaluacionCanServ();
 
         public ActionResult Index()
         {
             var candidato = Request["CANDIDATO"];
-            var evaluacion_Cand_ = db.Evaluacion_Cand_.Include(e => e.C_CANDIDATO).Include(e => e.C_ESTATUS);
-          
-            if(candidato != null)
+            var evaluacion_Cand_ = evaluacionCanServ.BuscarCandidato();
+
+
+            if (candidato != null)
             {
                 int CodigoCandidato = int.Parse(candidato);
-                evaluacion_Cand_ = evaluacion_Cand_.Where(h => h.CANDIDATO == CodigoCandidato);
+                evaluacion_Cand_ = evaluacion_Cand_.Where(h => h.CANDIDATO == CodigoCandidato).ToList();
             }
-            ViewBag.CANDIDATO = new SelectList(evaluacionCanServ.ListadoCandidato(), "CODIGO", "NOMBRE");
+            List<Candidatos> lista = new List<Candidatos>();
+            lista.Add(null);
+            lista.AddRange(evaluacionCanServ.ListadoCandidato());
+                
+            ViewBag.CANDIDATO = new SelectList(lista, "CODIGO", "NOMBRE");
             return View(evaluacion_Cand_);
         }
 
@@ -101,31 +105,6 @@ namespace AplicacionRRHHSimetrica.Controllers
         {
             evaluacionCanServ.EliminarEvaluacion(id);
             return RedirectToAction("Index");
-        }
-        // BUSCAR CANDIDATO
-        public ActionResult Buscar(string palabra)
-        {
-            IEnumerable<Evaluacion_Cand> libros;
-            var candidatos_ = db.Evaluacion_Cand_.Include(c => c.C_CANDIDATO).ToList();
-            var Evaluacion = db.Evaluacion_Cand_;
-            for (int i = 0; i < candidatos_.Count(); i++)
-            {
-                int Codigo = candidatos_[i].CODIGO;
-                var decision = Evaluacion.Where(x => x.CANDIDATO == Codigo).FirstOrDefault();
-            }
-            using (var bd = new DbSimetricaConxtext())
-            {
-                libros = bd.Evaluacion_Cand_;
-
-                if (!String.IsNullOrEmpty(palabra))
-                {
-                    //libros = candidatos_.Where(l => l.CANDIDATO.ToUpper().Contains(palabra.ToUpper()));
-                }
-
-                libros = libros.ToList();
-            }
-
-            return View(libros);
         }
 
         protected override void Dispose(bool disposing)
