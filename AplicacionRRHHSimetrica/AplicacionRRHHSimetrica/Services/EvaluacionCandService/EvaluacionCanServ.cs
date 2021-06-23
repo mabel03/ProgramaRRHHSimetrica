@@ -26,10 +26,10 @@ namespace AplicacionRRHHSimetrica.Services.EvaluacionCandService
             }
         }
 
-        /*public Evaluacion_Cand BuscarCandidato()
-        {
-
-        }*/
+        //public Evaluacion_Cand BuscarCandidato()
+        //{
+        //    List<>
+        //}
 
         public List<Candidatos> ListadoCandidato()
         {
@@ -91,5 +91,7 @@ namespace AplicacionRRHHSimetrica.Services.EvaluacionCandService
                 throw exc;
             }
         }
+        private List<Evaluacion_Cand> evaluacion_s;
+
     }
 }
